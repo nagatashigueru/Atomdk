@@ -23,7 +23,7 @@ def InputOptionsFile(OptionsFile):
 
     # Lista de Valores por defecto
 
-    DefaultValues = ['Default' for _ in range(len(OptionsList))]
+    DefaultValues = [[] for _ in range(len(OptionsList))]
 
     # Diccionario de opciones
 
@@ -41,10 +41,11 @@ def InputFileRead(InputFile, Params):
 
     for line in lines:
         spl = line.split()
-        if spl[0] in Params.keys():
-            Params[spl[0]] = spl[1]
-        else:
-            print('El parametro %s no esta definido' % (spl[0]))
+        for valor in spl:
+            if valor in Params.keys():
+                state = valor
+            else:
+                Params[state].append(valor)
 
     FileInput.close()
     return Params
