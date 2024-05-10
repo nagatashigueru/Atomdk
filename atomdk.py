@@ -8,10 +8,12 @@ import sys
 import input
 import structure
 
-parameters = input.InputOptionsFile('options.config')
-
 arguments = sys.argv
-
+parameters = input.InputOptionsFile('options.config')
 ParamValue = input.InputFileRead(arguments[1], parameters)
 
-Atoms = structure.XYZ('StructureExamples/Fe.xyz')
+ReadCoords = {'XYZ': structure.ReadXYZ}
+
+Atoms = ReadCoords[ParamValue['StructFormat'][0]](ParamValue['StructureFile'][0])
+
+print(Atoms)

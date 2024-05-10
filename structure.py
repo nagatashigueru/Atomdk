@@ -7,7 +7,7 @@
 
 import numpy as np
 
-def XYZ(FileXYZ):
+def ReadXYZ(FileXYZ):
 
     # --- #
     # Descripción:
