@@ -7,6 +7,7 @@
 import sys
 import input
 import structure
+import atoms
 
 arguments = sys.argv
 parameters = input.InputOptionsFile('options.config')
@@ -16,4 +17,7 @@ ReadCoords = {'XYZ': structure.ReadXYZ}
 
 Atoms = ReadCoords[ParamValue['StructFormat'][0]](ParamValue['StructureFile'][0])
 
-print(Atoms)
+x,y,z,xx,yy,zz,i = atoms.SurfaceInside(Atoms)
+
+#print(Atoms)
+print(y)
