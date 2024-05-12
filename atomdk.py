@@ -17,7 +17,7 @@ ReadCoords = {'XYZ': structure.ReadXYZ}
 
 Atoms = ReadCoords[ParamValue['StructFormat'][0]](ParamValue['StructureFile'][0])
 
-x,y,z,xx,yy,zz,i = atoms.SurfaceInside(Atoms)
+FaceXMin, FaceXMax, FaceYMin, FaceYMax, FaceZMin, FaceZMax, Inside = atoms.SurfaceInside(Atoms)
 
 #print(Atoms)
 print(y)
