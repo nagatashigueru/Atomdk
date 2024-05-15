@@ -4,6 +4,8 @@
 # Descripción : Modulo que implementa metodos para trabajar con los atomos.
 # --- #
 
+import random
+
 def SurfaceInside(AtomsCoord):
 
     # --- #
@@ -51,6 +53,8 @@ def SurfaceInside(AtomsCoord):
 
     return FaceXMin, FaceXMax, FaceYMin, FaceYMax, FaceZMin, FaceZMax, Inside
 
-def PointDefect():
-    pass
-    return
+def PointDefect(AtomsList):
+    SizeList = len(AtomsList)
+    IndexSelect = random.randrange(0,SizeList+1,1)
+    AtomsList.pop(IndexSelect)
+    return AtomsList
