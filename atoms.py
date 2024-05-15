@@ -50,3 +50,7 @@ def SurfaceInside(AtomsCoord):
             Inside.append(AtomsCoord[i,:])
 
     return FaceXMin, FaceXMax, FaceYMin, FaceYMax, FaceZMin, FaceZMax, Inside
+
+def PointDefect():
+    pass
+    return
