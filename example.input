@@ -1,0 +1,4 @@
+StructureFile StructureExamples/FeCubo.xyz
+StructFormat XYZ
+DefectType Point
+DefectPlace Surface
