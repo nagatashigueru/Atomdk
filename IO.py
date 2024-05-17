@@ -58,3 +58,18 @@ def InputFileRead(InputFile, Params):
 
     FileInput.close()
     return Params
+
+def WriteXYZ(Name,Structure):
+    output = open(Name,'w')
+    output.write(str(len(Structure)))
+    output.write('\n')
+    for i in range(len(Structure)):
+        output.write(str(Structure[i][0]))
+        output.write(' ')
+        output.write(str(Structure[i][1]))
+        output.write(' ')
+        output.write(str(Structure[i][2]))
+        output.write(' ')
+        output.write('\n')
+    output.close()
+    return

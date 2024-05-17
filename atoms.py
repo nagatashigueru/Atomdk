@@ -5,6 +5,7 @@
 # --- #
 
 import random
+import numpy as np
 
 def SurfaceInside(AtomsCoord):
 
@@ -70,13 +71,19 @@ def PointDefect(AtomsList):
 def LinearDefect(AtomsList,Size,Direction,Place):
     if Place == 'Surface':
         Atoms = random.choice(AtomsList)
+        print(type(Atoms))
         xmax, ymax, zmax = Atoms.max(axis=0)
         xmin, ymin, zmin = Atoms.min(axis=0)
         if xmax != xmin:
             if ymax != ymin:
-                SizeX = len(Atoms[])
+                SizeX = len(np.where(Atoms[:,1] == ymin))
+                SizeY = len(np.where(Atoms[:,0] == xmin))
+            else:
+                SizeX = len(np.where(Atoms[:,2] == zmin))
+                SizeZ = len(np.where(Atoms[:,0] == xmin))
         else:
-            pass
+            SizeY = len(np.where(Atoms[:,2] == zmin))
+            SizeZ = len(np.where(Atoms[:,1] == ymin))
     elif Place == 'Inside':
         pass
     else:

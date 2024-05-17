@@ -5,32 +5,38 @@
 # --- #
 
 import sys
-import input
+import IO
 import atoms
 import crystal
+import ase.io
 
 arguments = sys.argv
-parameters = input.InputOptionsFile('options.config')
-ParamValue = input.InputFileRead(arguments[1], parameters)
+parameters = IO.InputOptionsFile('options.config')
+ParamValue = IO.InputFileRead(arguments[1], parameters)
 
-DefectType = {'Point': atoms.PointDefect,
-              'Linear': atoms.LinearDefect}
-
-Atoms = crystal.CubicGenerator(ParamValue['LatticeType'][0],
+Structure = crystal.CubicGenerator(ParamValue['LatticeType'][0],
                                float(ParamValue['LatticeConst'][0]),
                                ParamValue['Symbol'][0],
                                int(ParamValue['SizeX'][0]),
                                int(ParamValue['SizeY'][0]),
                                int(ParamValue['SizeZ'][0]))
 
-FaceXMin, FaceXMax, FaceYMin, FaceYMax, FaceZMin, FaceZMax, Inside = atoms.SurfaceInside(Atoms)
+FaceXMin, FaceXMax, FaceYMin, FaceYMax, FaceZMin, FaceZMax, Inside = atoms.SurfaceInside(Structure)
 
-#FacesList = FaceXMin + FaceXMax + FaceYMin + FaceYMax + FaceZMin + FaceZMax
 Faces = (FaceXMin, FaceXMax, FaceYMin, FaceYMax, FaceZMin, FaceZMax)
+
+DefectType = {'Point': atoms.PointDefect,
+              'Linear': atoms.LinearDefect}
 
 DefectPlace = {'Surface': Faces,
                'Inside': Inside}
 
-NewStructure = DefectType[ParamValue['DefectType'][0]](DefectPlace[ParamValue['DefectPlace'][0]])
+if ParamValue['DefectType'][0] == 'Point':
+    NewStructure = atoms.PointDefect(DefectPlace[ParamValue['DefectPlace'][0]])
+elif ParamValue['DefectType'][0] == 'Linear':
+    NewStructure = atoms.LinearDefect(DefectPlace[ParamValue['DefectPlace'][0]],
+                                      3,
+                                      'X',
+                                      ParamValue['DefectPlace'][0])
 
-print(NewStructure)
+IO.WriteXYZ('NuevaEstructura.xyz',NewStructure)
