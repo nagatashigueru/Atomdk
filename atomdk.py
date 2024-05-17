@@ -6,7 +6,6 @@
 
 import sys
 import input
-#import structure
 import atoms
 import crystal
 
@@ -14,11 +13,7 @@ arguments = sys.argv
 parameters = input.InputOptionsFile('options.config')
 ParamValue = input.InputFileRead(arguments[1], parameters)
 
-#ReadCoords = {'XYZ': structure.ReadXYZ}
 DefectType = {'Point': atoms.PointDefect}
-
-
-#Atoms = ReadCoords[ParamValue['StructFormat'][0]](ParamValue['StructureFile'][0])
 
 Atoms = crystal.CubicGenerator(ParamValue['LatticeType'][0],
                                float(ParamValue['LatticeConst'][0]),
@@ -35,4 +30,4 @@ DefectPlace = {'Surface': FacesList, 'Inside': Inside}
 
 NewStructure = DefectType[ParamValue['DefectType'][0]](DefectPlace[ParamValue['DefectPlace'][0]])
 
-print(len(NewStructure))
+print(NewStructure)
