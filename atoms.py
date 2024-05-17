@@ -54,7 +54,31 @@ def SurfaceInside(AtomsCoord):
     return FaceXMin, FaceXMax, FaceYMin, FaceYMax, FaceZMin, FaceZMax, Inside
 
 def PointDefect(AtomsList):
-    SizeList = len(AtomsList)
-    IndexSelect = random.randrange(0,SizeList+1,1)
-    AtomsList.pop(IndexSelect)
-    return AtomsList
+    if type(AtomsList) is tuple:
+        Atoms = random.choice(AtomsList)
+        SizeList = len(Atoms)
+        IndexSelect = random.randrange(0,SizeList+1,1)
+        Atoms.pop(IndexSelect)
+    else:
+        Atoms = AtomsList
+        SizeList = len(Atoms)
+        IndexSelect = random.randrange(0,SizeList+1,1)
+        Atoms.pop(IndexSelect)
+            
+    return Atoms
+
+def LinearDefect(AtomsList,Size,Direction,Place):
+    if Place == 'Surface':
+        Atoms = random.choice(AtomsList)
+        xmax, ymax, zmax = Atoms.max(axis=0)
+        xmin, ymin, zmin = Atoms.min(axis=0)
+        if xmax != xmin:
+            if ymax != ymin:
+                SizeX = len(Atoms[])
+        else:
+            pass
+    elif Place == 'Inside':
+        pass
+    else:
+        print('Parametro equivocado')
+    return

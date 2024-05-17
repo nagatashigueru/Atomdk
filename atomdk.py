@@ -13,7 +13,8 @@ arguments = sys.argv
 parameters = input.InputOptionsFile('options.config')
 ParamValue = input.InputFileRead(arguments[1], parameters)
 
-DefectType = {'Point': atoms.PointDefect}
+DefectType = {'Point': atoms.PointDefect,
+              'Linear': atoms.LinearDefect}
 
 Atoms = crystal.CubicGenerator(ParamValue['LatticeType'][0],
                                float(ParamValue['LatticeConst'][0]),
@@ -24,9 +25,10 @@ Atoms = crystal.CubicGenerator(ParamValue['LatticeType'][0],
 
 FaceXMin, FaceXMax, FaceYMin, FaceYMax, FaceZMin, FaceZMax, Inside = atoms.SurfaceInside(Atoms)
 
-FacesList = FaceXMin + FaceXMax + FaceYMin + FaceYMax + FaceZMin + FaceZMax
+#FacesList = FaceXMin + FaceXMax + FaceYMin + FaceYMax + FaceZMin + FaceZMax
+Faces = (FaceXMin, FaceXMax, FaceYMin, FaceYMax, FaceZMin, FaceZMax)
 
-DefectPlace = {'Surface': FacesList,
+DefectPlace = {'Surface': Faces,
                'Inside': Inside}
 
 NewStructure = DefectType[ParamValue['DefectType'][0]](DefectPlace[ParamValue['DefectPlace'][0]])

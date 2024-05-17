@@ -1,8 +1,8 @@
 LatticeType BCC
 LatticeConst 2.8
 Symbol Fe
-SizeX 2
-SizeY 2
-SizeZ 2
+SizeX 5
+SizeY 5
+SizeZ 5
 DefectType Point
 DefectPlace Surface
