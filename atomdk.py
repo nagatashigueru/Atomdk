@@ -26,7 +26,8 @@ FaceXMin, FaceXMax, FaceYMin, FaceYMax, FaceZMin, FaceZMax, Inside = atoms.Surfa
 
 FacesList = FaceXMin + FaceXMax + FaceYMin + FaceYMax + FaceZMin + FaceZMax
 
-DefectPlace = {'Surface': FacesList, 'Inside': Inside}
+DefectPlace = {'Surface': FacesList,
+               'Inside': Inside}
 
 NewStructure = DefectType[ParamValue['DefectType'][0]](DefectPlace[ParamValue['DefectPlace'][0]])
 
