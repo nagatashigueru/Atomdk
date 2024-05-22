@@ -36,9 +36,10 @@ structure.Write('Fe.xyz')
 
 borrar = toolsdk.defect.SurfacePoint(FaceX, FaceY, FaceZ)
 borrar2 = toolsdk.defect.InsidePoint(Inside)
+borrar3 = toolsdk.defect.EdgePoint(EdgesYMin, EdgesYmax, EdgesZMax, EdgesZMin)
 
 print('los minimos: {mi}'.format(mi = Min))
 print('los maximos: {ma}'.format(ma = Max))
 print('la cara x min: {facexmi}'.format(facexmi = FaceX[0]))
 print('la arista y min x min: {edgeymixmi}'.format(edgeymixmi = EdgesYMin[0]))
-print('atomo borrado {atom}'.format(atom = borrar2))
+print('atomo borrado {atom}'.format(atom = borrar3))
