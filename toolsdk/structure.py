@@ -3,6 +3,7 @@
 # --- #
 
 import toolsdk.atoms
+import toolsdk.Writers
 
 class CrystalStructure:
     
@@ -13,13 +14,13 @@ class CrystalStructure:
         self.latticeconstant = latticeconstant
 
     def Write(self, FileName):
-        OutputFile = open(FileName, 'w')
-        OutputFile.write(str(len(self.positions)) + '\n')
-        OutputFile.write('\n')
-        for i in range(len(self.positions)):
-            OutputFile.write('{symbol} {x} {y} {z} \n'.format(symbol = self.symbol, x = self.positions[i][0], y = self.positions[i][1], z = self.positions[i][2]))
 
-        OutputFile.close()
+        FileName = FileName
+        Positions = self.positions
+        Symbol = self.symbol
+
+        toolsdk.Writers.Write(FileName, Positions, Symbol)
+
         return
     
     def MinMax(self, Positions):

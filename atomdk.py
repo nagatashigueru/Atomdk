@@ -3,6 +3,7 @@
 import sys
 import toolsdk.load
 import toolsdk.defect
+import toolsdk.Writers
 from toolsdk.structure import BaseCenteredCubic, FaceCenteredCubic, SimpleCubic
 
 Parameters = toolsdk.load.LoadConfig('config.rc')
@@ -32,14 +33,17 @@ FaceX, FaceY, FaceZ = structure.Face(Positions,Min,Max)
 Inside = structure.Inside(Positions, FaceX, FaceY, FaceZ)
 EdgesYMin, EdgesYmax, EdgesZMax, EdgesZMin = structure.Edges(FaceX,FaceY,FaceZ)
 
-structure.Write('Fe.xyz')
+if Values['OriginStruct'] == 'YES':
+    structure.Write(Values['OriginFile'])
 
-borrar = toolsdk.defect.SurfacePoint(FaceX, FaceY, FaceZ)
-borrar2 = toolsdk.defect.InsidePoint(Inside)
-borrar3 = toolsdk.defect.EdgePoint(EdgesYMin, EdgesYmax, EdgesZMax, EdgesZMin)
+if Values['DefectType'] == 'Point':
+    if Values['DefectPlace'] == 'Surface':
+        AtomChoice = toolsdk.defect.SurfacePoint(FaceX, FaceY, FaceZ)
+    elif Values['DefectPlace'] == 'Inside':
+        AtomChoice = toolsdk.defect.InsidePoint(Inside)
+    elif Values['DefectPlace'] == 'Edge':
+        AtomChoice = toolsdk.defect.EdgePoint(EdgesYMin, EdgesYmax, EdgesZMax, EdgesZMin)
 
-print('los minimos: {mi}'.format(mi = Min))
-print('los maximos: {ma}'.format(ma = Max))
-print('la cara x min: {facexmi}'.format(facexmi = FaceX[0]))
-print('la arista y min x min: {edgeymixmi}'.format(edgeymixmi = EdgesYMin[0]))
-print('atomo borrado {atom}'.format(atom = borrar3))
+    toolsdk.Writers.WritePoint('defecto.xyz', Positions, AtomChoice, structure.symbol)
+elif Values['DefectType'] == 'Line':
+    pass
