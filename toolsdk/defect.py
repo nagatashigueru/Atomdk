@@ -20,15 +20,19 @@ def SurfacePoint(FaceX, FaceY, FaceZ):
                FaceZMin,
                FaceZMax)
     
-    FaceChoice = random.choice(Options)
+    FaceChoice = random.choice(FaceOptions)
 
     AtomChoice = random.choice(FaceChoice)
 
     return AtomChoice
 
-def InsidePoint():
-    pass
-    return
+def InsidePoint(Inside):
+    
+    Inside = Inside
+
+    AtomChoice = random.choice(Inside)
+
+    return AtomChoice
 
 def EdgePoint():
     pass

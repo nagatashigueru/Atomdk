@@ -31,15 +31,26 @@ class CrystalStructure:
 
         return Min, Max
     
-    def FaceInside(self, Positions, Min, Max):
+    def Face(self, Positions, Min, Max):
 
         Positions = Positions
         Min = Min
         Max = Max
 
-        FaceXMin, FaceXMax, FaceYMin, FaceYMax, FaceZMin, FaceZMax, Inside = toolsdk.atoms.FaceInside(Positions, Min, Max)
+        FaceXMin, FaceXMax, FaceYMin, FaceYMax, FaceZMin, FaceZMax= toolsdk.atoms.Face(Positions, Min, Max)
 
-        return (FaceXMin, FaceXMax) , (FaceYMin, FaceYMax) , (FaceZMin, FaceZMax) , Inside
+        return (FaceXMin, FaceXMax) , (FaceYMin, FaceYMax) , (FaceZMin, FaceZMax)
+    
+    def Inside(self, Positions, FaceX, FaceY, FaceZ):
+
+        Positions = Positions
+        FaceX = FaceX
+        FaceY = FaceY
+        FaceZ = FaceZ
+
+        Inside = toolsdk.atoms.Inside(Positions, FaceX, FaceY, FaceZ)
+
+        return Inside
     
     def Edges(self, FaceX, FaceY, FaceZ):
 

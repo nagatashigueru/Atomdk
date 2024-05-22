@@ -36,7 +36,7 @@ def maximum(Positions):
 
     return (xma, yma, zma)
 
-def FaceInside(Positions, Min, Max):
+def Face(Positions, Min, Max):
 
     Positions = Positions
     Min = Min
@@ -65,10 +65,37 @@ def FaceInside(Positions, Min, Max):
                 ZMin.append(Positions[i])
             if Positions[i][2] == Max[2]:
                 ZMax.append(Positions[i])
-            else:
-                Inside.append(Positions[i])
 
-    return XMin, XMax, YMin, YMax, ZMin, ZMax, Inside
+    return XMin, XMax, YMin, YMax, ZMin, ZMax
+
+def Inside(Positions, FaceX, FaceY, FaceZ):
+
+    Positions = Positions
+    FaceX = FaceX
+    FaceY = FaceY
+    FaceZ = FaceZ
+
+    FaceXMin = FaceX[0]
+    FaceXMax = FaceX[1]
+    FaceYMin = FaceY[0]
+    FaceYMax = FaceY[1]
+    FaceZMin = FaceZ[0]
+    FaceZMax = FaceZ[1]
+
+    AtomsFace = [*FaceXMin,
+                 *FaceXMax,
+                 *FaceYMin,
+                 *FaceYMax,
+                 *FaceZMin,
+                 *FaceZMax]
+    
+    Inside = []
+
+    for i in range(len(Positions)):
+        if Positions[i] not in AtomsFace:
+            Inside.append(Positions[i])
+
+    return Inside
 
 def Edges(FaceX, FaceY, FaceZ):
 
