@@ -1,0 +1,10 @@
+## -----------------
+## Script de ejemplo
+## -----------------
+
+LatticeType BCC
+LatticeConst 2.8
+Symbol Fe
+SizeX 3
+SizeY 3
+SizeZ 3
