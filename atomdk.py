@@ -32,6 +32,7 @@ Min, Max = structure.MinMax(Positions)
 FaceX, FaceY, FaceZ = structure.Face(Positions,Min,Max)
 Inside = structure.Inside(Positions, FaceX, FaceY, FaceZ)
 EdgesYMin, EdgesYmax, EdgesZMax, EdgesZMin = structure.Edges(FaceX,FaceY,FaceZ)
+VerticesZMax, VerticesZMin = structure.Vertices(EdgesYMin, EdgesYmax, EdgesZMax, EdgesZMin)
 
 if Values['OriginStruct'] == 'YES':
     structure.Write(Values['OriginFile'])
@@ -44,6 +45,6 @@ if Values['DefectType'] == 'Point':
     elif Values['DefectPlace'] == 'Edge':
         AtomChoice = toolsdk.defect.EdgePoint(EdgesYMin, EdgesYmax, EdgesZMax, EdgesZMin)
 
-    toolsdk.Writers.WritePoint('defecto.xyz', Positions, AtomChoice, structure.symbol)
+    toolsdk.Writers.WritePoint(Values['OutputFile'], Positions, AtomChoice, structure.symbol)
 elif Values['DefectType'] == 'Line':
     pass

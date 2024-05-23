@@ -70,7 +70,9 @@ class CrystalStructure:
         EdgesZMax = EdgesZMax
         EdgesZMin = EdgesZMin
 
-        return
+        VXiYiZa, VXiYaZa, VXaYaZa, VXaYiZa, VXiYiZi, VXiYaZi, VXaYaZi, VXaYiZi = toolsdk.atoms.Vertices(EdgesYMin, EdgesYmax, EdgesZMax, EdgesZMin)
+
+        return (VXiYiZa, VXiYaZa, VXaYaZa, VXaYiZa), (VXiYiZi, VXiYaZi, VXaYaZi, VXaYiZi)
 
 class BaseCenteredCubic(CrystalStructure):
 
