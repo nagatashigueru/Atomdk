@@ -9,7 +9,7 @@ SizeX 3
 SizeY 3
 SizeZ 3
 DefectType Point
-DefectPlace Vertex
+DefectPlace Surface
 OutputFile defecto.xyz
 OriginStruct YES
 OriginFile Fe.xyz
