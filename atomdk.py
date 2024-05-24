@@ -44,7 +44,12 @@ if Values['DefectType'] == 'Point':
         AtomChoice = toolsdk.defect.InsidePoint(Inside)
     elif Values['DefectPlace'] == 'Edge':
         AtomChoice = toolsdk.defect.EdgePoint(EdgesYMin, EdgesYmax, EdgesZMax, EdgesZMin)
+    elif Values['DefectPlace'] == 'Vertex':
+        AtomChoice = toolsdk.defect.VertexPoint(VerticesZMax, VerticesZMin)
 
     toolsdk.Writers.WritePoint(Values['OutputFile'], Positions, AtomChoice, structure.symbol)
+
 elif Values['DefectType'] == 'Line':
     pass
+
+print(AtomChoice)

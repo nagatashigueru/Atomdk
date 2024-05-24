@@ -136,26 +136,26 @@ def Edges(FaceX, FaceY, FaceZ):
             EdgeZmaxYmin.append(FaceYMin[i])
 
     for j in range(len(FaceYMax)):
-        if FaceYMax[i] in FaceXMin:
-            EdgeXminYmax.append(FaceYMax[i])
-        if FaceYMax[i] in FaceXMax:
-            EdgeXmaxYmax.append(FaceYMax[i])
-        if FaceYMax[i] in FaceZMin:
-            EdgeZminYmax.append(FaceYMax[i])
-        if FaceYMax[i] in FaceZMax:
-            EdgeZmaxYmax.append(FaceYMax[i])
+        if FaceYMax[j] in FaceXMin:
+            EdgeXminYmax.append(FaceYMax[j])
+        if FaceYMax[j] in FaceXMax:
+            EdgeXmaxYmax.append(FaceYMax[j])
+        if FaceYMax[j] in FaceZMin:
+            EdgeZminYmax.append(FaceYMax[j])
+        if FaceYMax[j] in FaceZMax:
+            EdgeZmaxYmax.append(FaceYMax[j])
 
     for k in range(len(FaceZMax)):
-        if FaceZMax[i] in FaceXMin:
-            EdgeXminZmax.append(FaceZMax[i])
-        if FaceZMax[i] in FaceXMax:
-            EdgeXmaxZmax.append(FaceZMax[i])
+        if FaceZMax[k] in FaceXMin:
+            EdgeXminZmax.append(FaceZMax[k])
+        if FaceZMax[k] in FaceXMax:
+            EdgeXmaxZmax.append(FaceZMax[k])
 
     for l in range(len(FaceZMin)):
-        if FaceZMin[i] in FaceXMin:
-            EdgeXminZmin.append(FaceZMin[i])
-        if FaceZMin[i] in FaceXMax:
-            EdgeXmaxZmin.append(FaceZMin[i])
+        if FaceZMin[l] in FaceXMin:
+            EdgeXminZmin.append(FaceZMin[l])
+        if FaceZMin[l] in FaceXMax:
+            EdgeXmaxZmin.append(FaceZMin[l])
 
     return EdgeXminYmin, EdgeXmaxYmin, EdgeZminYmin, EdgeZmaxYmin, EdgeXminYmax, EdgeXmaxYmax, EdgeZminYmax, EdgeZmaxYmax, EdgeXminZmax, EdgeXmaxZmax, EdgeXminZmin, EdgeXmaxZmin
 
@@ -181,6 +181,15 @@ def Vertices(EdgesYMin, EdgesYmax, EdgesZMax, EdgesZMin):
     EdgeXminZmin = EdgesZMin[0]
     EdgeXmaxZmin = EdgesZMin[1]
 
+    VXiYiZa = 0
+    VXiYaZa = 0
+    VXaYaZa = 0
+    VXaYiZa = 0
+    VXiYiZi = 0
+    VXiYaZi = 0
+    VXaYaZi = 0
+    VXaYiZi = 0
+
     for i in range(len(EdgeXminZmax)):
         if EdgeXminZmax[i] in EdgeXminYmin and EdgeXminZmax[i] in EdgeZmaxYmin:
             VXiYiZa = EdgeXminZmax[i]
@@ -200,7 +209,7 @@ def Vertices(EdgesYMin, EdgesYmax, EdgesZMax, EdgesZMin):
             VXiYaZi = EdgeXminZmin[k]
 
     for l in range(len(EdgeXmaxZmin)):
-        if EdgeXmaxZmin[l] in EdgeXmaxYmax and EdgeXmaxZmin[k] in EdgeZminYmax:
+        if EdgeXmaxZmin[l] in EdgeXmaxYmax and EdgeXmaxZmin[l] in EdgeZminYmax:
             VXaYaZi = EdgeXmaxZmin[l]
         if EdgeXmaxZmin[l] in EdgeZminYmin and EdgeXmaxZmin[l] in EdgeXmaxYmin:
             VXaYiZi = EdgeXmaxZmin[l]

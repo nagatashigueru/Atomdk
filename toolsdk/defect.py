@@ -78,3 +78,37 @@ def EdgePoint(EdgesYMin, EdgesYmax, EdgesZMax, EdgesZMin):
             AtomChoice = random.choice(EdgeChoice)
 
     return AtomChoice
+
+def VertexPoint(VerticesZMax, VerticesZMin):
+
+    VerticesZMax = VerticesZMax
+    VerticesZMin = VerticesZMin
+
+    VXiYiZa = VerticesZMax[0]
+    VXiYaZa = VerticesZMax[1]
+    VXaYaZa = VerticesZMax[2]
+    VXaYiZa = VerticesZMax[3]
+
+    VXiYiZi = VerticesZMin[0]
+    VXiYaZi = VerticesZMin[1]
+    VXaYaZi = VerticesZMin[2]
+    VXaYiZi = VerticesZMin[3]
+
+    VertexOptions = (VXiYiZa,
+                     VXiYaZa,
+                     VXaYaZa,
+                     VXaYiZa,
+                     VXiYiZi,
+                     VXiYaZi,
+                     VXaYaZi,
+                     VXaYiZi)
+    
+    Flag = 0
+
+    while Flag == 0:
+        VertexChoice = random.choice(VertexOptions)
+        if type(VertexChoice) is tuple:
+            Flag = 1
+            AtomChoice = VertexChoice
+
+    return AtomChoice
