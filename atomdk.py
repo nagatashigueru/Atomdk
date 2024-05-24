@@ -51,5 +51,3 @@ if Values['DefectType'] == 'Point':
 
 elif Values['DefectType'] == 'Line':
     pass
-
-print(AtomChoice)
