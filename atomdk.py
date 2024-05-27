@@ -50,4 +50,10 @@ if Values['DefectType'] == 'Point':
     toolsdk.Writers.WritePoint(Values['OutputFile'], Positions, AtomChoice, structure.symbol)
 
 elif Values['DefectType'] == 'Line':
-    pass
+    if Values['DefectPlace'] == 'Edge':
+        AtomChoice = toolsdk.defect.EdgeLine(EdgesYMin, EdgesYmax, EdgesZMax, EdgesZMin, int(Values['Size']), structure.latticeconstant)
+    elif Values['DefectPlace'] == 'Surface':
+        AtomChoice = toolsdk.defect.SurfaceLine(FaceX,FaceY,FaceZ,int(Values['Size']))
+
+    toolsdk.Writers.WriteLine(Values['OutputFile'], Positions, AtomChoice, structure.symbol)
+    print(AtomChoice)
