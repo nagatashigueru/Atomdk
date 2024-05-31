@@ -139,3 +139,16 @@ class SimpleCubic(CrystalStructure):
                 for k in range(self.size[2]):
                     self.positions.append((x1 + (i * self.latticeconstant), y1 + (j * self.latticeconstant), z1 + (k * self.latticeconstant)))
         return self.positions
+
+# =================== #
+# CELDAS HETEROGENEAS
+# =================== #
+
+class CrystallStructureMultiple:
+
+    def __init__(self, Species, Coords, LatticeConstant, Size):
+        self.Species = Species 
+        self.UnitCell = Coords
+        self.LatticeConstant = LatticeConstant
+        self.Size = Size
+
