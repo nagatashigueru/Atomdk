@@ -56,4 +56,3 @@ elif Values['DefectType'] == 'Line':
         AtomChoice = toolsdk.defect.SurfaceLine(FaceX,FaceY,FaceZ,int(Values['Size']))
 
     toolsdk.Writers.WriteLine(Values['OutputFile'], Positions, AtomChoice, structure.symbol)
-    print(AtomChoice)

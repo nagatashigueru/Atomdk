@@ -219,7 +219,6 @@ def SurfaceLine(FaceX, FaceY, FaceZ, Size):
             Uvalues = toolsdk.auxiliary.UniqueValues(FaceChoice,axe)
             AxeVal = random.choice(Uvalues)
             SValues = toolsdk.auxiliary.SortedValues(FaceChoice,axe,axeDiff,AxeVal)
-            print(SValues)
             if len(SValues) >= Size:
                 if axe == 'x':
                     for i in range(Size):
@@ -236,7 +235,6 @@ def SurfaceLine(FaceX, FaceY, FaceZ, Size):
             Uvalues = toolsdk.auxiliary.UniqueValues(FaceChoice,axe)
             AxeVal = random.choice(Uvalues)
             SValues = toolsdk.auxiliary.SortedValues(FaceChoice,axe,axeDiff,AxeVal)
-            print(SValues)
             if len(SValues) >= Size:
                 if axe == 'x':
                     for i in range(Size):
@@ -254,7 +252,6 @@ def SurfaceLine(FaceX, FaceY, FaceZ, Size):
             Uvalues = toolsdk.auxiliary.UniqueValues(FaceChoice,axe)
             AxeVal = random.choice(Uvalues)
             SValues = toolsdk.auxiliary.SortedValues(FaceChoice,axe,axeDiff,AxeVal)
-            print(SValues)
             if len(SValues) >= Size:
                 if axe == 'y':
                     for i in range(Size):
