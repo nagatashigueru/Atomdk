@@ -2,6 +2,10 @@
 # modulo para escribir archivos
 # --- #
 
+# =================== #
+# WRITERS HOMOGENEOS
+# =================== #
+
 def Write(FileName, Positions, Symbol):
 
     Positions = Positions

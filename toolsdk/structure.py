@@ -5,6 +5,10 @@
 import toolsdk.atoms
 import toolsdk.Writers
 
+# ================= #
+# CELDAS HOMOGENEAS
+# ================= #
+
 class CrystalStructure:
     
     def __init__(self, symbol, size, latticeconstant):

@@ -10,4 +10,6 @@ DefectPlace
 OutputFile
 OriginStruct
 OriginFile
-Size
+DefectSize
+CoordFile
+NumberSpecies

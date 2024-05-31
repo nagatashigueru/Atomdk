@@ -10,7 +10,7 @@ SizeY 3
 SizeZ 3
 DefectType Line
 DefectPlace Surface
-Size = 2
+DefectSize = 2
 OutputFile defectolinea.xyz
 OriginStruct YES
 OriginFile Fe.xyz
