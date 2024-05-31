@@ -2,6 +2,7 @@
 ## Script de ejemplo
 ## -----------------
 
+NumberSpecies 1
 LatticeType BCC
 LatticeConst 2.8
 Symbol Fe

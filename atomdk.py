@@ -13,46 +13,53 @@ if len(Arguments) == 2:
 else:
     print('Debe indicar un archivo de input con las opciones correspondientes')
 
-if Values['LatticeType'] == 'BCC':
-    structure = BaseCenteredCubic(symbol=Values['Symbol'],
+
+if int(Values['NumberSpecies']) >= 2:
+    pass
+elif int(Values['NumberSpecies']) == 1:
+
+    if Values['LatticeType'] == 'BCC':
+        structure = BaseCenteredCubic(symbol=Values['Symbol'],
                               latticeconstant=float(Values['LatticeConst']),
                               size=(int(Values['SizeX'][0]),int(Values['SizeY'][0]),int(Values['SizeZ'][0])))
-elif Values['LatticeType'] == 'FCC':
-    structure = FaceCenteredCubic(symbol=Values['Symbol'],
-                              latticeconstant=float(Values['LatticeConst']),
-                              size=(int(Values['SizeX'][0]),int(Values['SizeY'][0]),int(Values['SizeZ'][0])))
-elif Values['LatticeType'] == 'SC':
-    structure = SimpleCubic(symbol=Values['Symbol'],
-                              latticeconstant=float(Values['LatticeConst']),
-                              size=(int(Values['SizeX'][0]),int(Values['SizeY'][0]),int(Values['SizeZ'][0])))
+    elif Values['LatticeType'] == 'FCC':
+        structure = FaceCenteredCubic(symbol=Values['Symbol'],
+                                latticeconstant=float(Values['LatticeConst']),
+                                size=(int(Values['SizeX'][0]),int(Values['SizeY'][0]),int(Values['SizeZ'][0])))
+    elif Values['LatticeType'] == 'SC':
+        structure = SimpleCubic(symbol=Values['Symbol'],
+                                latticeconstant=float(Values['LatticeConst']),
+                                size=(int(Values['SizeX'][0]),int(Values['SizeY'][0]),int(Values['SizeZ'][0])))
 
 
-Positions = structure.getpositions()
-Min, Max = structure.MinMax(Positions)
-FaceX, FaceY, FaceZ = structure.Face(Positions,Min,Max)
-Inside = structure.Inside(Positions, FaceX, FaceY, FaceZ)
-EdgesYMin, EdgesYmax, EdgesZMax, EdgesZMin = structure.Edges(FaceX,FaceY,FaceZ)
-VerticesZMax, VerticesZMin = structure.Vertices(EdgesYMin, EdgesYmax, EdgesZMax, EdgesZMin)
+    Positions = structure.getpositions()
+    Min, Max = structure.MinMax(Positions)
+    FaceX, FaceY, FaceZ = structure.Face(Positions,Min,Max)
+    Inside = structure.Inside(Positions, FaceX, FaceY, FaceZ)
+    EdgesYMin, EdgesYmax, EdgesZMax, EdgesZMin = structure.Edges(FaceX,FaceY,FaceZ)
+    VerticesZMax, VerticesZMin = structure.Vertices(EdgesYMin, EdgesYmax, EdgesZMax, EdgesZMin)
 
-if Values['OriginStruct'] == 'YES':
-    structure.Write(Values['OriginFile'])
+    if Values['OriginStruct'] == 'YES':
+        structure.Write(Values['OriginFile'])
 
-if Values['DefectType'] == 'Point':
-    if Values['DefectPlace'] == 'Surface':
-        AtomChoice = toolsdk.defect.SurfacePoint(FaceX, FaceY, FaceZ)
-    elif Values['DefectPlace'] == 'Inside':
-        AtomChoice = toolsdk.defect.InsidePoint(Inside)
-    elif Values['DefectPlace'] == 'Edge':
-        AtomChoice = toolsdk.defect.EdgePoint(EdgesYMin, EdgesYmax, EdgesZMax, EdgesZMin)
-    elif Values['DefectPlace'] == 'Vertex':
-        AtomChoice = toolsdk.defect.VertexPoint(VerticesZMax, VerticesZMin)
+    if Values['DefectType'] == 'Point':
+        if Values['DefectPlace'] == 'Surface':
+            AtomChoice = toolsdk.defect.SurfacePoint(FaceX, FaceY, FaceZ)
+        elif Values['DefectPlace'] == 'Inside':
+            AtomChoice = toolsdk.defect.InsidePoint(Inside)
+        elif Values['DefectPlace'] == 'Edge':
+            AtomChoice = toolsdk.defect.EdgePoint(EdgesYMin, EdgesYmax, EdgesZMax, EdgesZMin)
+        elif Values['DefectPlace'] == 'Vertex':
+            AtomChoice = toolsdk.defect.VertexPoint(VerticesZMax, VerticesZMin)
 
-    toolsdk.Writers.WritePoint(Values['OutputFile'], Positions, AtomChoice, structure.symbol)
+        toolsdk.Writers.WritePoint(Values['OutputFile'], Positions, AtomChoice, structure.symbol)
 
-elif Values['DefectType'] == 'Line':
-    if Values['DefectPlace'] == 'Edge':
-        AtomChoice = toolsdk.defect.EdgeLine(EdgesYMin, EdgesYmax, EdgesZMax, EdgesZMin, int(Values['DefectSize']), structure.latticeconstant)
-    elif Values['DefectPlace'] == 'Surface':
-        AtomChoice = toolsdk.defect.SurfaceLine(FaceX,FaceY,FaceZ,int(Values['DefectSize']))
+    elif Values['DefectType'] == 'Line':
+        if Values['DefectPlace'] == 'Edge':
+            AtomChoice = toolsdk.defect.EdgeLine(EdgesYMin, EdgesYmax, EdgesZMax, EdgesZMin, int(Values['DefectSize']), structure.latticeconstant)
+        elif Values['DefectPlace'] == 'Surface':
+            AtomChoice = toolsdk.defect.SurfaceLine(FaceX,FaceY,FaceZ,int(Values['DefectSize']))
 
-    toolsdk.Writers.WriteLine(Values['OutputFile'], Positions, AtomChoice, structure.symbol)
+        toolsdk.Writers.WriteLine(Values['OutputFile'], Positions, AtomChoice, structure.symbol)
+else:
+    print('Revise la cantidad de especies quimicas debe ser un entero mayor igual a 1')
